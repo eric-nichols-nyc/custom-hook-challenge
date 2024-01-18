@@ -37,7 +37,6 @@ export const useDropdown = <T extends { name: string }>(data: T[]) => {
         setShowMenu(false);
         return;
       case "Delete":
-        console.log('delete')
         if (filteredData) {
           setShowMenu(true);
         }
