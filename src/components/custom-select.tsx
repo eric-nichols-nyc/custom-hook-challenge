@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, ChangeEvent } from "react";
 import { Icon } from "./icon";
 import { Input } from "./input";
 import { SelectItem } from "./select-item";
@@ -33,7 +33,7 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
   } = useDropdown(data);
 
   // handle on input change
-  const handleOnInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSelected(e.target.value);
     setShowMenu(true);
     setFilteredData(
