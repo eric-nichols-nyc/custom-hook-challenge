@@ -1,4 +1,4 @@
-import { useRef,useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Icon } from "./icon";
 import { Input } from "./input";
 import { SelectItem } from "./select-item";
@@ -31,7 +31,7 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
     setShowMenu,
     setSelected,
   } = useDropdown(data);
-  
+
   // handle on input change
   const handleOnInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.target.value);
@@ -52,7 +52,7 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
       inputRef.current?.select();
     });
   };
-// handle on dropdown item select
+  // handle on dropdown item select
   const handleOnOptionSelect = (name: string) => {
     setSelected(name);
     inputRef.current?.blur();
@@ -73,71 +73,61 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
   }, []);
 
   return (
+    <div
+      className={`w-[300px] rounded-md ${
+        focused && "border-2 border-blue-500"
+      }`}
+    >
       <div
-        className={`w-[300px] rounded-md ${
-          focused && "border-2 border-blue-500"
-        }`}
+        role="combobox"
+        aria-controls="data-list"
+        aria-expanded={showMenu}
+        aria-haspopup="listbox"
+        className={`combobox ${focused && "bg-transparent"}`}
       >
+        <Input
+          ref={inputRef}
+          className="input"
+          onFocus={handleOnSelectFocus}
+          onChange={handleOnInputChange}
+          type="text"
+          placeholder={placeholder}
+          value={selected || ""}
+        />
         <div
-          role="combobox"
-          aria-controls="data-list"
-          aria-expanded={showMenu}
-          aria-haspopup="listbox"
-          className={`combobox ${
-            focused && "bg-transparent"
-          }`}
-        >
-          <Input
-            ref={inputRef}
-            className="input"
-            onFocus={handleOnSelectFocus}
-            onChange={handleOnInputChange}
-            type="text"
-            placeholder={placeholder}
-            value={selected || ""}
-          />
-          <div
-            className="cursor-pointer"
-            role="button"
-            tabIndex={-1}
-            onKeyDown={handleOnSelectFocus}
-            onClick={handleOnSelectFocus}
-          >
-            <Icon />
-          </div>
-        </div>
-        <div
-          id="data-list"
-          className={`list ${
-            showMenu ? "block" : "hidden"
-          }`}
-          role="listbox"
+          className="cursor-pointer"
+          role="button"
           tabIndex={-1}
-          aria-labelledby="data-list"
-          aria-expanded={showMenu}
+          onKeyDown={handleOnSelectFocus}
+          onClick={handleOnSelectFocus}
         >
-          {showMenu ? (
-            <>
-              {filteredData?.map((data: Data, idx) => {
-                return (
-                  <SelectItem
-                    key={data.id}
-                    data={data}
-                    selected={selected}
-                    className={`select ${
-                      activeIndex === idx && "bg-slate-100"
-                    }`}
-                    onKeyDown={() => void 0}
-                    onMouseOver={() => setActiveIndex(idx)}
-                    onFocus={() => void 0}
-                    onClick={() => handleOnOptionSelect(data.name)}
-                    tabIndex={-1}
-                  />
-                );
-              })}
-            </>
-          ) : null}
+          <Icon />
         </div>
       </div>
+      <div
+        id="data-list"
+        className={`list ${showMenu ? "block" : "hidden"}`}
+        role="listbox"
+        tabIndex={-1}
+        aria-labelledby="data-list"
+        aria-expanded={showMenu}
+      >
+        {filteredData?.map((data: Data, idx) => {
+          return (
+            <SelectItem
+              key={data.id}
+              data={data}
+              selected={selected}
+              className={`select ${activeIndex === idx && "bg-slate-100"}`}
+              onKeyDown={() => void 0}
+              onMouseOver={() => setActiveIndex(idx)}
+              onFocus={() => void 0}
+              onClick={() => handleOnOptionSelect(data.name)}
+              tabIndex={-1}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 };
