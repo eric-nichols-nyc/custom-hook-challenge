@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { Data } from './custom-select';
+
 type SelectItemProps = {
   data: Data
   selected: string | '';

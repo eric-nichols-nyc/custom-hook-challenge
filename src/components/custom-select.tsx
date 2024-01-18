@@ -15,6 +15,7 @@ type SelectProps<T> = {
   placeholder?: string;
 };
 
+// CustomSelect component
 export const Select = ({ data, placeholder }: SelectProps<Data>) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,7 +31,8 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
     setShowMenu,
     setSelected,
   } = useDropdown(data);
-
+  
+  // handle on input change
   const handleOnInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.target.value);
     setShowMenu(true);
@@ -40,7 +42,7 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
       )
     );
   };
-
+  // handle on custom select is focused
   const handleOnSelectFocus = () => {
     setFocused(true);
     setShowMenu(true);
@@ -50,13 +52,13 @@ export const Select = ({ data, placeholder }: SelectProps<Data>) => {
       inputRef.current?.select();
     });
   };
-
+// handle on dropdown item select
   const handleOnOptionSelect = (name: string) => {
     setSelected(name);
     inputRef.current?.blur();
     setShowMenu(false);
   };
-
+  // close menu on outside click
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
