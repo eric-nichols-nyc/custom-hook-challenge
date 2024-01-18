@@ -1,6 +1,6 @@
 # React Custom Dropdown Challenge
 
-### Features
+### Keyboard Features
 
 - Move up and down using ArrowUp and ArrowDown
 - Select an element by pressing Enter

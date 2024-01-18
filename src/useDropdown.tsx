@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 export const useDropdown = <T extends { name: string }>(data: T[]) => {
+  // State variables using React hooks
   const [focused, setFocused] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  const [selected, setSelected] = useState<string | "">("");
-  const [filteredData, setFilteredData] = useState<T[] | null>(data);
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [showMenu, setShowMenu] = useState(false); // Controls the visibility of the dropdown menu
+  const [selected, setSelected] = useState<string | "">(""); // Stores the selected value
+  const [filteredData, setFilteredData] = useState<T[] | null>(data);// Stores the filtered data
+  const [activeIndex, setActiveIndex] = useState(-1); // Stores the active index of the dropdown menu
 
   const handleOnKeyDown = (e: KeyboardEvent) => {
-    console.log(e.key)
     if (!filteredData) return;
     switch (e.key) {
       case "ArrowDown":
