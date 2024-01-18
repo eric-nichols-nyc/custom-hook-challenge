@@ -1,0 +1,66 @@
+.App {
+    @apply max-w-[780px] mx-auto p-5;
+}
+
+.app-heading {
+    @apply text-2xl font-semibold mb-4;
+}
+
+.button {
+    @apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-2;
+}
+
+.select-label {
+    color: #FFF;
+    margin: 1em 0;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    display: block;
+  }
+
+  .select-container {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+  }
+
+  .select-button {
+    border: 2px solid #A0A0A0;
+    width: 100%;
+    background: #F6F6F6;
+    color: #333;
+    font-size: 1.2em;
+    padding: calc(0.3em + 3px) calc(0.5em + 3px);
+    position: relative;
+    z-index: 1;
+  }
+
+  .select-button:focus {
+    outline: 2px solid white;
+    outline-offset: 5px;
+    border-color: #000;
+    border-width: 5px;
+    box-sizing: border-box;
+    padding: 0.3em 0.5em;
+  
+  }
+
+  .select-dropdown {
+    background: #FFF;
+    color: #333;
+    font-size: 1.2em;
+    min-width: 100%;
+    margin-top: 15px;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 0;
+  }
+
+  .select-dropdown li > label {
+    width: 100%;
+    display: flex;
+    padding: 0.5em 0.5em;
+    font-family: sans-serif;
+    box-sizing: border-box;
+  }
+
